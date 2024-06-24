@@ -1,4 +1,3 @@
-fbprophet
 prophet
 streamlit
 pandas
