@@ -3,7 +3,7 @@ from datetime import date
 import plotly.graph_objects as go
 import pandas as pd
 
-phone_options_df = pd.read_excel("Phone_Options_Collecting.xlsx")
+phone_options_df = pd.read_excel("/mount/src/demo1_app/WebAPP_Phone_Price_Forcasting/Phone_Options_Collecting.xlsx")
 
 st.title('Used Apple phones Price Forecast App')
 
