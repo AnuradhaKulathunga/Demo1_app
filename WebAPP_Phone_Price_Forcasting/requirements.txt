@@ -1,4 +1,4 @@
---force-reinstall numpy==1.18.5
+numpy==1.18.5 --force-reinstall
 prophet
 streamlit
 pandas
