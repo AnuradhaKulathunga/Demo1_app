@@ -11,14 +11,14 @@ phones = phone_options_df.Phone
 selected_phone = st.selectbox('Select an Apple phone for Price prediction', phones,index=0)
 import json
 # Load Phone_Dict.json into phone_dict
-with open("Dictionaries_TextBlob/Sort_Encodes_Phones_dict.json", 'r') as f:
+with open("/mount/src/demo1_app/WebAPP_Phone_Price_Forcasting/Dictionaries_TextBlob/Sort_Encodes_Phones_dict.json", 'r') as f:
     phone_dict = json.load(f)
 
 selected_phone=phone_dict[selected_phone]
 
 st.write(f"Selected phone codde: {selected_phone}")
 
-Full_df = pd.read_excel("Full_Data_FbProphet_Sentiments.xlsx")
+Full_df = pd.read_excel("/mount/src/demo1_app/WebAPP_Phone_Price_Forcasting/Full_Data_FbProphet_Sentiments.xlsx")
 End_date = Full_df["Date"].max()
 
 st.write("### Select The DATE To Forecast")
@@ -95,7 +95,7 @@ df['Day'] = pd.to_datetime(df['Date']).dt.day
 df['Minute'] = df['Date'].dt.minute
 df['Hour'] = df['Date'].dt.hour
 
-Cleaned_phone_options_df = pd.read_excel("Cleaned_phone_options_df.xlsx")
+Cleaned_phone_options_df = pd.read_excel("/mount/src/demo1_app/WebAPP_Phone_Price_Forcasting/Cleaned_phone_options_df.xlsx")
 
 # Function to duplicate rows
 def duplicate_rows(df, n):
@@ -133,7 +133,7 @@ def predict_sentiment(df, phone):
     future_dates = df[['Date']].rename(columns={'Date': 'ds'})
 
     # Load the pre-trained models
-    models_path = f'FbProphet_models_Sentiment_forcasting/{phone}'
+    models_path = f'/mount/src/demo1_app/WebAPP_Phone_Price_Forcasting/FbProphet_models_Sentiment_forcasting/{phone}'
     positive_model_filename = os.path.join(models_path, f'{phone}_Positive.joblib')
     negative_model_filename = os.path.join(models_path, f'{phone}_Negative.joblib')
 
@@ -162,11 +162,11 @@ import numpy as np
 import pickle
 
 # Load the scaler object from the file
-with open('Price_Predict_XGBBOOST/scaler_X.pkl', 'rb') as f:
+with open('/mount/src/demo1_app/WebAPP_Phone_Price_Forcasting/Price_Predict_XGBBOOST/scaler_X.pkl', 'rb') as f:
     scaler_X = pickle.load(f)
 
 # Load the best parameters model
-with open('Price_Predict_XGBBOOST/best_xgb_params.pkl', 'rb') as f:
+with open('/mount/src/demo1_app/WebAPP_Phone_Price_Forcasting/Price_Predict_XGBBOOST/best_xgb_params.pkl', 'rb') as f:
     loaded_model = joblib.load(f)
 import xgboost as xgb
 def predict_phone_prices(df, loaded_model=loaded_model,scaler_X=scaler_X):
